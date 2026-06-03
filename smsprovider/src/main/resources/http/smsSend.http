@@ -1,0 +1,21 @@
+### SMS yuborish
+POST http://localhost:8080/sms/send
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJyb2xlIjoiQ0xJRU5UIiwiaWQiOjEsInN1YiI6ImFsaTEyMyIsImlhdCI6MTc4MDQ3OTExMiwiZXhwIjoxNzgwNTY1NTEyfQ.LwdVQ3kbkbc5YWRp23Iz9ZyMX5t8_yCOgEoMVho7GJQ
+
+{
+  "phone": "+998901234567",
+  "text": "whatsupp , this is demo sms!"
+}
+
+###
+
+### O'z SMS larini ko'rish
+GET http://localhost:8080/sms/my
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJyb2xlIjoiQ0xJRU5UIiwiaWQiOjEsInN1YiI6ImFsaTEyMyIsImlhdCI6MTc4MDQ3OTExMiwiZXhwIjoxNzgwNTY1NTEyfQ.LwdVQ3kbkbc5YWRp23Iz9ZyMX5t8_yCOgEoMVho7GJQ
+
+###
+
+### O'z SMS larini filter bilan ko'rish
+GET http://localhost:8080/sms/my?page=0&size=10&sortBy=createdDate&sortDir=DESC&fromDate=2026-01-01T00:00:00&toDate=2026-12-31T23:59:59
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJyb2xlIjoiQ0xJRU5UIiwiaWQiOjEsInN1YiI6ImFsaTEyMyIsImlhdCI6MTc4MDQ3OTExMiwiZXhwIjoxNzgwNTY1NTEyfQ.LwdVQ3kbkbc5YWRp23Iz9ZyMX5t8_yCOgEoMVho7GJQ

@@ -19,31 +19,21 @@ public class SmsEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
     private Long id;
 
-    @Column(name = "client_id", nullable = false)
-    private Long clientId;
+    private Long clientId; // yoki relation
 
-    @Column(name = "phone", nullable = false)
     private String phone;
 
-    @Column(name = "text", nullable = false, columnDefinition = "TEXT")
+    @Column(columnDefinition = "TEXT", nullable = false)
     private String text;
 
-    @Column(name = "price", nullable = false)
-    @Builder.Default
-    private BigDecimal price = new BigDecimal("125");
-
+    private BigDecimal price;
 
     @Enumerated(EnumType.STRING)
-    @Column(name = "status", nullable = false)
-    @Builder.Default
-    private SmsStatus status = SmsStatus.PENDING;
+    private SmsStatus status;
 
     @CreationTimestamp
-    @Column(name = "created_date", updatable = false)
+    @Column(updatable = false)
     private LocalDateTime createdDate;
-
-
 }

@@ -1,0 +1,14 @@
+### Balance ko'rish
+GET http://localhost:8080/client/balance
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJyb2xlIjoiQ0xJRU5UIiwiaWQiOjEsInN1YiI6ImFsaTEyMyIsImlhdCI6MTc4MDQ3OTExMiwiZXhwIjoxNzgwNTY1NTEyfQ.LwdVQ3kbkbc5YWRp23Iz9ZyMX5t8_yCOgEoMVho7GJQ
+
+###
+
+### Balance to'ldirish
+POST http://localhost:8080/client/fill-balance
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJyb2xlIjoiQ0xJRU5UIiwiaWQiOjEsInN1YiI6ImFsaTEyMyIsImlhdCI6MTc4MDQ3OTExMiwiZXhwIjoxNzgwNTY1NTEyfQ.LwdVQ3kbkbc5YWRp23Iz9ZyMX5t8_yCOgEoMVho7GJQ
+
+{
+  "amount": 50000
+}

@@ -1,0 +1,58 @@
+### Admin Login
+POST http://localhost:8080/admin/auth/login
+Content-Type: application/json
+
+{
+  "login": "admin",
+  "password": "admin123"
+}
+
+
+
+### Client Login
+POST http://localhost:8080/client/auth/login
+Content-Type: application/json
+
+{
+  "login": "ali123",
+  "password": "123456"
+}
+
+###
+
+### Client Registration
+POST http://localhost:8080/client/auth/registration
+Content-Type: application/json
+
+{
+  "companyName": "Test Company",
+  "ownerName": "Ali",
+  "ownerSurname": "Valiyev",
+  "phone": "+998901234567",
+  "email": "ali@test.com",
+  "login": "ali123",
+  "password": "123456"
+}
+
+###
+
+### Reset Password
+POST http://localhost:8080/client/auth/reset-password
+Content-Type: application/json
+
+{
+  "login": "ali123",
+  "newPassword": "123456"
+}
+
+###
+
+### Update Password
+PUT http://localhost:8080/client/auth/update-password
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJyb2xlIjoiQ0xJRU5UIiwiaWQiOjEsInN1YiI6ImFsaTEyMyIsImlhdCI6MTc4MDQ3OTExMiwiZXhwIjoxNzgwNTY1NTEyfQ.LwdVQ3kbkbc5YWRp23Iz9ZyMX5t8_yCOgEoMVho7GJQ
+
+{
+  "oldPassword": "123456",
+  "newPassword": "newpass123"
+}

@@ -1,0 +1,81 @@
+### Barcha clientlar
+GET http://localhost:8080/admin/client
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJyb2xlIjoiQURNSU4iLCJpZCI6MSwic3ViIjoiYWRtaW4iLCJpYXQiOjE3ODA0Nzg5NTcsImV4cCI6MTc4MDU2NTM1N30.vVNnpnAVAOz1tZXZppPD9hmKJkCZg2aPBYLUrIyoRSU
+
+###
+
+### Clientlarni search bilan
+GET http://localhost:8080/admin/client?search=ali&page=0&size=10
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJyb2xlIjoiQURNSU4iLCJpZCI6MSwic3ViIjoiYWRtaW4iLCJpYXQiOjE3ODA0Nzg5NTcsImV4cCI6MTc4MDU2NTM1N30.vVNnpnAVAOz1tZXZppPD9hmKJkCZg2aPBYLUrIyoRSU
+
+###
+
+### Clientlarni status bilan filter
+GET http://localhost:8080/admin/client?status=ACTIVE
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJyb2xlIjoiQURNSU4iLCJpZCI6MSwic3ViIjoiYWRtaW4iLCJpYXQiOjE3ODA0Nzg5NTcsImV4cCI6MTc4MDU2NTM1N30.vVNnpnAVAOz1tZXZppPD9hmKJkCZg2aPBYLUrIyoRSU
+
+###
+
+### Bitta client
+GET http://localhost:8080/admin/client/1
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJyb2xlIjoiQURNSU4iLCJpZCI6MSwic3ViIjoiYWRtaW4iLCJpYXQiOjE3ODA0Nzg5NTcsImV4cCI6MTc4MDU2NTM1N30.vVNnpnAVAOz1tZXZppPD9hmKJkCZg2aPBYLUrIyoRSU
+
+###
+
+### Clientni bloklash
+PUT http://localhost:8080/admin/client/1/block
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJyb2xlIjoiQURNSU4iLCJpZCI6MSwic3ViIjoiYWRtaW4iLCJpYXQiOjE3ODA0Nzg5NTcsImV4cCI6MTc4MDU2NTM1N30.vVNnpnAVAOz1tZXZppPD9hmKJkCZg2aPBYLUrIyoRSU
+
+###
+
+### Clientni blokdan chiqarish
+PUT http://localhost:8080/admin/client/1/unblock
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJyb2xlIjoiQURNSU4iLCJpZCI6MSwic3ViIjoiYWRtaW4iLCJpYXQiOjE3ODA0Nzg5NTcsImV4cCI6MTc4MDU2NTM1N30.vVNnpnAVAOz1tZXZppPD9hmKJkCZg2aPBYLUrIyoRSU
+
+###
+
+### Barcha SMS lar
+GET http://localhost:8080/admin/sms
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJyb2xlIjoiQURNSU4iLCJpZCI6MSwic3ViIjoiYWRtaW4iLCJpYXQiOjE3ODA0Nzg5NTcsImV4cCI6MTc4MDU2NTM1N30.vVNnpnAVAOz1tZXZppPD9hmKJkCZg2aPBYLUrIyoRSU
+
+###
+
+### SMS larni filter bilan
+GET http://localhost:8080/admin/sms?status=SENT&page=0&size=10
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJyb2xlIjoiQURNSU4iLCJpZCI6MSwic3ViIjoiYWRtaW4iLCJpYXQiOjE3ODA0Nzg5NTcsImV4cCI6MTc4MDU2NTM1N30.vVNnpnAVAOz1tZXZppPD9hmKJkCZg2aPBYLUrIyoRSU
+
+###
+
+### Bitta SMS
+GET http://localhost:8080/admin/sms/1
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJyb2xlIjoiQURNSU4iLCJpZCI6MSwic3ViIjoiYWRtaW4iLCJpYXQiOjE3ODA0Nzg5NTcsImV4cCI6MTc4MDU2NTM1N30.vVNnpnAVAOz1tZXZppPD9hmKJkCZg2aPBYLUrIyoRSU
+
+###
+
+### Barcha transactionlar
+GET http://localhost:8080/admin/transaction
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJyb2xlIjoiQURNSU4iLCJpZCI6MSwic3ViIjoiYWRtaW4iLCJpYXQiOjE3ODA0Nzg5NTcsImV4cCI6MTc4MDU2NTM1N30.vVNnpnAVAOz1tZXZppPD9hmKJkCZg2aPBYLUrIyoRSU
+
+###
+
+### Transactionlarni filter bilan
+GET http://localhost:8080/admin/transaction?type=DEBIT&page=0&size=10
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJyb2xlIjoiQURNSU4iLCJpZCI6MSwic3ViIjoiYWRtaW4iLCJpYXQiOjE3ODA0Nzg5NTcsImV4cCI6MTc4MDU2NTM1N30.vVNnpnAVAOz1tZXZppPD9hmKJkCZg2aPBYLUrIyoRSU
+
+###
+
+### Bitta transaction
+GET http://localhost:8080/admin/transaction/1
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJyb2xlIjoiQURNSU4iLCJpZCI6MSwic3ViIjoiYWRtaW4iLCJpYXQiOjE3ODA0Nzg5NTcsImV4cCI6MTc4MDU2NTM1N30.vVNnpnAVAOz1tZXZppPD9hmKJkCZg2aPBYLUrIyoRSU
+
+###
+
+### SMS statistikasi
+GET http://localhost:8080/admin/statistics/sms
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJyb2xlIjoiQURNSU4iLCJpZCI6MSwic3ViIjoiYWRtaW4iLCJpYXQiOjE3ODA0Nzg5NTcsImV4cCI6MTc4MDU2NTM1N30.vVNnpnAVAOz1tZXZppPD9hmKJkCZg2aPBYLUrIyoRSU
+
+###
+
+### Top clientlar
+GET http://localhost:8080/admin/statistics/top-clients?limit=5
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJyb2xlIjoiQURNSU4iLCJpZCI6MSwic3ViIjoiYWRtaW4iLCJpYXQiOjE3ODA0Nzg5NTcsImV4cCI6MTc4MDU2NTM1N30.vVNnpnAVAOz1tZXZppPD9hmKJkCZg2aPBYLUrIyoRSU
