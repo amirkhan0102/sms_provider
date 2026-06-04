@@ -1,0 +1,10 @@
+### Scheduled SMS yuborish
+POST http://localhost:8080/sms/schedule
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJyb2xlIjoiQ0xJRU5UIiwiaWQiOjEsInN1YiI6ImFsaTEyMyIsImlhdCI6MTc4MDU2ODI3MywiZXhwIjoxNzgwNjU0NjczfQ.nLz52oB0zmrPNEEvqHLnA_nOPWpG8Tqjirb7DuPaN0k
+
+{
+  "phone": "+998901234567",
+  "text": "Bu scheduled SMS test!",
+  "scheduledDate": "2026-06-04T15:22:00"
+}

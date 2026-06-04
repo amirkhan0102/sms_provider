@@ -28,6 +28,9 @@ public class SmsEntity {
     @Column(columnDefinition = "TEXT", nullable = false)
     private String text;
 
+    @Column(name = "scheduled_date")
+    private LocalDateTime scheduledDate;
+
     private BigDecimal price;
 
     @Enumerated(EnumType.STRING)

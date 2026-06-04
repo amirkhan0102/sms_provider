@@ -1,8 +1,12 @@
 package dasturlash.uz.smsprovider.service;
+
 import dasturlash.uz.smsprovider.dto.request.BulkSmsSendRequest;
+import dasturlash.uz.smsprovider.dto.request.ScheduledSmsRequest;
 import dasturlash.uz.smsprovider.dto.response.BulkSmsResponse;
+
 import java.util.ArrayList;
 import java.util.List;
+
 import dasturlash.uz.smsprovider.entity.SmsEntity;
 
 
@@ -90,7 +94,7 @@ public class SmsService {
     }
 
     @Transactional
-    public BulkSmsResponse sendBulkSms(BulkSmsSendRequest request, Long clientId){
+    public BulkSmsResponse sendBulkSms(BulkSmsSendRequest request, Long clientId) {
         // clientni topamiz avval
         ClientEntity client = clientRepository.findByIdAndVisibleTrue(clientId)
                 .orElseThrow(() -> new AppException("Client topilmadi",
@@ -103,8 +107,8 @@ public class SmsService {
 
         // smslar uchun total summ ni hisoblash
 
-        int totalCount= request.getPhones().size();
-        BigDecimal totalPrice= SMS_PRICE.multiply(new BigDecimal(totalCount));
+        int totalCount = request.getPhones().size();
+        BigDecimal totalPrice = SMS_PRICE.multiply(new BigDecimal(totalCount));
 
 
         // balansni tekshirish yetadimi yuqmi
@@ -156,6 +160,43 @@ public class SmsService {
                 .balanceAfter(balanceAfter)
                 .smsList(savedSmsList.stream().map(this::toResponse).toList())
                 .build();
+    }
+
+    @Transactional
+    public SmsResponse scheduleSms(ScheduledSmsRequest request, Long clientId) {
+
+        ClientEntity client = clientRepository.findByIdAndVisibleTrue(clientId)
+                .orElseThrow(() -> new AppException("Client topilmadi", HttpStatus.NOT_FOUND.value()));
+
+
+        // ACTIVEga tekshirish
+
+        if (client.getStatus() != GeneralStatus.ACTIVE) {
+            throw new AppException("Client BLOKLANGAN", HttpStatus.FORBIDDEN.value());
+        }
+
+        // BALANCE CHECK
+
+        if (client.getBalance().compareTo(SMS_PRICE) < 0) {
+            throw new AppException("BALANCE yetarli emas. Joriy balance : "
+                    + client.getBalance() + "sum . SMS narxi "
+                    + SMS_PRICE + " so'm", HttpStatus.PAYMENT_REQUIRED.value());
+
+        }
+
+        SmsEntity ems = SmsEntity.builder()
+                .clientId(clientId)
+                .phone(request.getPhone())
+                .text(request.getText())
+                .price(SMS_PRICE)
+                .status(SmsStatus.PENDING)
+                .scheduledDate(request.getScheduledDate())
+                .build();
+        smsRepository.save(ems);
+
+        return toResponse(ems);
+
+
     }
 
     public Page<SmsResponse> getMySms(Long clientId, LocalDateTime fromDate,

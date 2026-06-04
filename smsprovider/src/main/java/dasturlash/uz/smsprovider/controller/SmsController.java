@@ -1,6 +1,7 @@
 package dasturlash.uz.smsprovider.controller;
 
 import dasturlash.uz.smsprovider.dto.request.BulkSmsSendRequest;
+import dasturlash.uz.smsprovider.dto.request.ScheduledSmsRequest;
 import dasturlash.uz.smsprovider.dto.request.SmsSendRequest;
 import dasturlash.uz.smsprovider.dto.response.BulkSmsResponse;
 import dasturlash.uz.smsprovider.dto.response.SmsResponse;
@@ -32,6 +33,14 @@ public class SmsController {
             @Valid @RequestBody SmsSendRequest request) {
         request.setClientId(userDetails.getId());
         return ResponseEntity.ok(smsService.sendSms(request));
+    }
+
+    @PostMapping("/schedule")
+    public ResponseEntity<SmsResponse> scheduleSms(
+            @AuthenticationPrincipal CustomUserDetails userDetails,
+            @Valid @RequestBody ScheduledSmsRequest request) {
+        return ResponseEntity.ok(
+                smsService.scheduleSms(request, userDetails.getId()));
     }
 
     @GetMapping("/my")

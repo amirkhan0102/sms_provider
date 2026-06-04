@@ -55,4 +55,9 @@ public interface SmsRepository extends JpaRepository<SmsEntity, Long> {
             "GROUP BY s.clientId, c.companyName " +
             "ORDER BY COUNT(s) DESC")
     List<TopClientResponse> findTopClients(Pageable pageable);
+
+    @Query("SELECT s FROM SmsEntity s WHERE s.status = 'PENDING' " +
+            "AND s.scheduledDate IS NOT NULL " +
+            "AND s.scheduledDate <= :now")
+    List<SmsEntity> findPendingScheduledSms(@Param("now") LocalDateTime now);
 }
