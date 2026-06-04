@@ -1,6 +1,8 @@
 package dasturlash.uz.smsprovider.controller;
 
+import dasturlash.uz.smsprovider.dto.request.BulkSmsSendRequest;
 import dasturlash.uz.smsprovider.dto.request.SmsSendRequest;
+import dasturlash.uz.smsprovider.dto.response.BulkSmsResponse;
 import dasturlash.uz.smsprovider.dto.response.SmsResponse;
 import dasturlash.uz.smsprovider.security.CustomUserDetails;
 import dasturlash.uz.smsprovider.service.SmsService;
@@ -51,5 +53,12 @@ public class SmsController {
 
         return ResponseEntity.ok(
                 smsService.getMySms(userDetails.getId(), fromDate, toDate, pageable));
+    }
+    @PostMapping("/bulk")
+    public ResponseEntity<BulkSmsResponse> sendBulkSms(
+            @AuthenticationPrincipal CustomUserDetails userDetails,
+            @Valid @RequestBody BulkSmsSendRequest request) {
+        return ResponseEntity.ok(
+                smsService.sendBulkSms(request, userDetails.getId()));
     }
 }

@@ -28,7 +28,6 @@ public class AdminController {
     private final SmsService smsService;
     private final TransactionService transactionService;
 
-    // ===================== CLIENT =====================
 
     @GetMapping("/client")
     public ResponseEntity<Page<ClientResponse>> getAllClients(
@@ -58,7 +57,6 @@ public class AdminController {
         return ResponseEntity.ok(adminService.unblockClient(id));
     }
 
-    // ===================== SMS =====================
 
     @GetMapping("/sms")
     public ResponseEntity<Page<SmsResponse>> getAllSms(
@@ -83,7 +81,6 @@ public class AdminController {
         return ResponseEntity.ok(smsService.getSmsById(id));
     }
 
-    // ===================== TRANSACTION =====================
 
     @GetMapping("/transaction")
     public ResponseEntity<Page<TransactionResponse>> getAllTransactions(
@@ -109,7 +106,7 @@ public class AdminController {
         return ResponseEntity.ok(transactionService.getById(id));
     }
 
-    // ===================== STATISTICS =====================
+
 
     @GetMapping("/statistics/sms")
     public ResponseEntity<SmsStatisticsResponse> getSmsStatistics() {

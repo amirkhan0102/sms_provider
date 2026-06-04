@@ -22,7 +22,7 @@ public class CustomUserDetailsService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String login) throws UsernameNotFoundException {
-        // Avval Admin dan izlaymiz
+
         Optional<ProfileEntity> profileOpt = profileRepository.findByLoginAndVisibleTrue(login);
         if (profileOpt.isPresent()) {
             ProfileEntity profile = profileOpt.get();
@@ -35,7 +35,6 @@ public class CustomUserDetailsService implements UserDetailsService {
             );
         }
 
-        // Keyin Client dan izlaymiz
         Optional<ClientEntity> clientOpt = clientRepository.findByLoginAndVisibleTrue(login);
         if (clientOpt.isPresent()) {
             ClientEntity client = clientOpt.get();
