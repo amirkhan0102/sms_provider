@@ -1,0 +1,39 @@
+### === REDIS CACHE TEST (ClientService) ===
+
+### 1. Client Login
+POST http://localhost:8081/client/auth/login
+Content-Type: application/json
+
+{
+  "login": "ali123",
+  "password": "123456"
+}
+
+### 2. Profile - 1-chi so'rov (DB dan o'qishi kerak)
+GET http://localhost:8081/client/profile
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJyb2xlIjoiQ0xJRU5UIiwiaWQiOjEsInN1YiI6ImFsaTEyMyIsImlhdCI6MTc4MDU3NDE1NiwiZXhwIjoxNzgwNjYwNTU2fQ.5Zk2PzUqy8nMIw6rbjP3sakusVBhdklw6iQ8RUpdrGk
+
+### 3. Profile - 2-chi so'rov (Cache dan o'qishi kerak)
+GET http://localhost:8081/client/profile
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJyb2xlIjoiQ0xJRU5UIiwiaWQiOjEsInN1YiI6ImFsaTEyMyIsImlhdCI6MTc4MDU3NDE1NiwiZXhwIjoxNzgwNjYwNTU2fQ.5Zk2PzUqy8nMIw6rbjP3sakusVBhdklw6iQ8RUpdrGk
+
+
+### 4. Balance - 1-chi so'rov
+GET http://localhost:8081/client/balance
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJyb2xlIjoiQ0xJRU5UIiwiaWQiOjEsInN1YiI6ImFsaTEyMyIsImlhdCI6MTc4MDU3NDE1NiwiZXhwIjoxNzgwNjYwNTU2fQ.5Zk2PzUqy8nMIw6rbjP3sakusVBhdklw6iQ8RUpdrGk
+
+### 5. Balance - 2-chi so'rov (Cache dan)
+GET http://localhost:8081/client/balance
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJyb2xlIjoiQ0xJRU5UIiwiaWQiOjEsInN1YiI6ImFsaTEyMyIsImlhdCI6MTc4MDU3NDE1NiwiZXhwIjoxNzgwNjYwNTU2fQ.5Zk2PzUqy8nMIw6rbjP3sakusVBhdklw6iQ8RUpdrGk
+### 6. Balance to'ldirish (Cache ni tozalashi kerak)
+POST http://localhost:8081/client/fill-balance
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJyb2xlIjoiQ0xJRU5UIiwiaWQiOjEsInN1YiI6ImFsaTEyMyIsImlhdCI6MTc4MDU3NDE1NiwiZXhwIjoxNzgwNjYwNTU2fQ.5Zk2PzUqy8nMIw6rbjP3sakusVBhdklw6iQ8RUpdrGk
+
+{
+  "amount": 25000
+}
+
+### 7. Balance to'ldirgandan keyin yana so'rov (Yangi qiymat kelishi kerak)
+GET http://localhost:8081/client/balance
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJyb2xlIjoiQ0xJRU5UIiwiaWQiOjEsInN1YiI6ImFsaTEyMyIsImlhdCI6MTc4MDU3NDE1NiwiZXhwIjoxNzgwNjYwNTU2fQ.5Zk2PzUqy8nMIw6rbjP3sakusVBhdklw6iQ8RUpdrGk

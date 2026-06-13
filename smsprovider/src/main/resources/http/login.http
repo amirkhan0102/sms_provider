@@ -1,5 +1,5 @@
 ### Admin Login
-POST http://localhost:8080/admin/auth/login
+POST http://localhost:8081/admin/auth/login
 Content-Type: application/json
 
 {
@@ -10,7 +10,7 @@ Content-Type: application/json
 
 
 ### Client Login
-POST http://localhost:8080/client/auth/login
+POST http://localhost:8081/client/auth/login
 Content-Type: application/json
 
 {
@@ -21,7 +21,7 @@ Content-Type: application/json
 ###
 
 ### Client Registration
-POST http://localhost:8080/client/auth/registration
+POST http://localhost:8081/client/auth/registration
 Content-Type: application/json
 
 {
@@ -37,7 +37,7 @@ Content-Type: application/json
 ###
 
 ### Reset Password
-POST http://localhost:8080/client/auth/reset-password
+POST http://localhost:8081/client/auth/reset-password
 Content-Type: application/json
 
 {
@@ -48,7 +48,7 @@ Content-Type: application/json
 ###
 
 ### Update Password
-PUT http://localhost:8080/client/auth/update-password
+PUT http://localhost:8081/client/auth/update-password
 Content-Type: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJyb2xlIjoiQ0xJRU5UIiwiaWQiOjEsInN1YiI6ImFsaTEyMyIsImlhdCI6MTc4MDQ3OTExMiwiZXhwIjoxNzgwNTY1NTEyfQ.LwdVQ3kbkbc5YWRp23Iz9ZyMX5t8_yCOgEoMVho7GJQ
 

@@ -1,5 +1,5 @@
 ### SMS yuborish
-POST http://localhost:8080/sms/send
+POST http://localhost:8081/sms/send
 Content-Type: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJyb2xlIjoiQ0xJRU5UIiwiaWQiOjEsInN1YiI6ImFsaTEyMyIsImlhdCI6MTc4MDQ3OTExMiwiZXhwIjoxNzgwNTY1NTEyfQ.LwdVQ3kbkbc5YWRp23Iz9ZyMX5t8_yCOgEoMVho7GJQ
 
@@ -11,17 +11,17 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJyb2xlIjoiQ0xJRU5UIiwiaWQiOjEsInN1Y
 ###
 
 ### O'z SMS larini ko'rish
-GET http://localhost:8080/sms/my
+GET http://localhost:8081/sms/my
 Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJyb2xlIjoiQ0xJRU5UIiwiaWQiOjEsInN1YiI6ImFsaTEyMyIsImlhdCI6MTc4MDQ3OTExMiwiZXhwIjoxNzgwNTY1NTEyfQ.LwdVQ3kbkbc5YWRp23Iz9ZyMX5t8_yCOgEoMVho7GJQ
 
 ###
 
 ### O'z SMS larini filter bilan ko'rish
-GET http://localhost:8080/sms/my?page=0&size=10&sortBy=createdDate&sortDir=DESC&fromDate=2026-01-01T00:00:00&toDate=2026-12-31T23:59:59
+GET http://localhost:8081/sms/my?page=0&size=10&sortBy=createdDate&sortDir=DESC&fromDate=2026-01-01T00:00:00&toDate=2026-12-31T23:59:59
 Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJyb2xlIjoiQ0xJRU5UIiwiaWQiOjEsInN1YiI6ImFsaTEyMyIsImlhdCI6MTc4MDQ3OTExMiwiZXhwIjoxNzgwNTY1NTEyfQ.LwdVQ3kbkbc5YWRp23Iz9ZyMX5t8_yCOgEoMVho7GJQ
 
 ### Bulk SMS yuborish
-POST http://localhost:8080/sms/bulk
+POST http://localhost:8081/sms/bulk
 Content-Type: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJyb2xlIjoiQ0xJRU5UIiwiaWQiOjEsInN1YiI6ImFsaTEyMyIsImlhdCI6MTc4MDQ3OTExMiwiZXhwIjoxNzgwNTY1NTEyfQ.LwdVQ3kbkbc5YWRp23Iz9ZyMX5t8_yCOgEoMVho7GJQ
 

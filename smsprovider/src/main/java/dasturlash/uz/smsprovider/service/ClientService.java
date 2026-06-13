@@ -1,24 +1,28 @@
 package dasturlash.uz.smsprovider.service;
 
-import dasturlash.uz.smsprovider.dto.request.*;
+import dasturlash.uz.smsprovider.dto.request.ClientLoginRequest;
+import dasturlash.uz.smsprovider.dto.request.ClientRegistrationRequest;
+import dasturlash.uz.smsprovider.dto.request.ClientUpdateRequest;
+import dasturlash.uz.smsprovider.dto.request.FillBalanceRequest;
+import dasturlash.uz.smsprovider.dto.request.ResetPasswordRequest;
+import dasturlash.uz.smsprovider.dto.request.UpdatePasswordRequest;
 import dasturlash.uz.smsprovider.dto.response.ClientLoginResponse;
 import dasturlash.uz.smsprovider.dto.response.ClientResponse;
 import dasturlash.uz.smsprovider.entity.ClientEntity;
-import dasturlash.uz.smsprovider.enums.TransactionType;
 import dasturlash.uz.smsprovider.entity.TransactionEntity;
-import dasturlash.uz.smsprovider.repository.TransactionRepository;
-import org.springframework.transaction.annotation.Transactional;
-import dasturlash.uz.smsprovider.dto.request.ResetPasswordRequest;
-
-
 import dasturlash.uz.smsprovider.enums.GeneralStatus;
+import dasturlash.uz.smsprovider.enums.TransactionType;
 import dasturlash.uz.smsprovider.exceptions.AppException;
 import dasturlash.uz.smsprovider.repository.ClientRepository;
+import dasturlash.uz.smsprovider.repository.TransactionRepository;
 import dasturlash.uz.smsprovider.security.JwtUtil;
 import lombok.RequiredArgsConstructor;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.math.BigDecimal;
 
@@ -83,43 +87,37 @@ public class ClientService {
                 .build();
     }
 
-    public ClientResponse updateProfile(Long clientId, ClientUpdateRequest request) {
-        ClientEntity clientEntity = getClientOrThrow(clientId);
-        if (!clientEntity.getEmail().equals(request.getEmail()) && clientRepository.existsByEmail(request.getEmail())) {
-            throw new AppException("Bu email allaqachon ishlatilmoqda", HttpStatus.CONFLICT.value());
-        }
-
-        clientEntity.setCompanyName(request.getCompanyName());
-        clientEntity.setOwnerName(request.getOwnerName());
-        clientEntity.setOwnerSurname(request.getOwnerSurname());
-        clientEntity.setPhone(request.getPhone());
-        clientEntity.setEmail(request.getEmail());
-
-        return toResponse(clientRepository.save(clientEntity));
+    @Cacheable(value = "clientProfile", key = "#id")
+    public ClientResponse getById(Long id) {
+        return toResponse(getClientOrThrow(id));
     }
 
-    public String updatePassword(Long clientId, UpdatePasswordRequest request) {
+    @Cacheable(value = "clientBalance", key = "#clientId")
+    public BigDecimal getBalance(Long clientId) {
+        return getClientOrThrow(clientId).getBalance();
+    }
+
+    @CacheEvict(value = {"clientProfile", "clientBalance"}, key = "#clientId")
+    @Transactional
+    public ClientResponse updateProfile(Long clientId, ClientUpdateRequest request) {
         ClientEntity client = getClientOrThrow(clientId);
 
-        if (!passwordEncoder.matches(request.getOldPassword(), client.getPassword())) {
-            throw new AppException("Eski parol noto'g'ri",
-                    HttpStatus.BAD_REQUEST.value());
+        if (!client.getEmail().equals(request.getEmail()) &&
+                clientRepository.existsByEmail(request.getEmail())) {
+            throw new AppException("Bu email allaqachon ishlatilmoqda",
+                    HttpStatus.CONFLICT.value());
         }
 
-        client.setPassword(passwordEncoder.encode(request.getNewPassword()));
-        clientRepository.save(client);
-        return "Parol muvaffaqiyatli yangilandi";
-    }
-    public String resetPassword(ResetPasswordRequest request) {
-        ClientEntity client = clientRepository.findByLoginAndVisibleTrue(request.getLogin())
-                .orElseThrow(() -> new AppException("Client topilmadi",
-                        HttpStatus.NOT_FOUND.value()));
+        client.setCompanyName(request.getCompanyName());
+        client.setOwnerName(request.getOwnerName());
+        client.setOwnerSurname(request.getOwnerSurname());
+        client.setPhone(request.getPhone());
+        client.setEmail(request.getEmail());
 
-        client.setPassword(passwordEncoder.encode(request.getNewPassword()));
-        clientRepository.save(client);
-        return "Parol muvaffaqiyatli yangilandi";
+        return toResponse(clientRepository.save(client));
     }
 
+    @CacheEvict(value = {"clientProfile", "clientBalance"}, key = "#clientId")
     @Transactional
     public ClientResponse fillBalance(Long clientId, FillBalanceRequest request) {
         ClientEntity client = getClientOrThrow(clientId);
@@ -143,8 +141,27 @@ public class ClientService {
         return toResponse(client);
     }
 
-    public ClientResponse getById(Long id) {
-        return toResponse(getClientOrThrow(id));
+    public String updatePassword(Long clientId, UpdatePasswordRequest request) {
+        ClientEntity client = getClientOrThrow(clientId);
+
+        if (!passwordEncoder.matches(request.getOldPassword(), client.getPassword())) {
+            throw new AppException("Eski parol noto'g'ri",
+                    HttpStatus.BAD_REQUEST.value());
+        }
+
+        client.setPassword(passwordEncoder.encode(request.getNewPassword()));
+        clientRepository.save(client);
+        return "Parol muvaffaqiyatli yangilandi";
+    }
+
+    public String resetPassword(ResetPasswordRequest request) {
+        ClientEntity client = clientRepository.findByLoginAndVisibleTrue(request.getLogin())
+                .orElseThrow(() -> new AppException("Client topilmadi",
+                        HttpStatus.NOT_FOUND.value()));
+
+        client.setPassword(passwordEncoder.encode(request.getNewPassword()));
+        clientRepository.save(client);
+        return "Parol muvaffaqiyatli yangilandi";
     }
 
     public ClientEntity getClientOrThrow(Long id) {

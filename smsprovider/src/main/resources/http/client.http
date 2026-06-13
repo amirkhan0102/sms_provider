@@ -1,11 +1,11 @@
 ### Client Profile ko'rish
-GET http://localhost:8080/client/profile
+GET http://localhost:8081/client/profile
 Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJyb2xlIjoiQ0xJRU5UIiwiaWQiOjEsInN1YiI6ImFsaTEyMyIsImlhdCI6MTc4MDQ3OTExMiwiZXhwIjoxNzgwNTY1NTEyfQ.LwdVQ3kbkbc5YWRp23Iz9ZyMX5t8_yCOgEoMVho7GJQ
 
 ###
 
 ### Client Profile yangilash
-PUT http://localhost:8080/client/profile
+PUT http://localhost:8081/client/profile
 Content-Type: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJyb2xlIjoiQ0xJRU5UIiwiaWQiOjEsInN1YiI6ImFsaTEyMyIsImlhdCI6MTc4MDQ3OTExMiwiZXhwIjoxNzgwNTY1NTEyfQ.LwdVQ3kbkbc5YWRp23Iz9ZyMX5t8_yCOgEoMVho7GJQ
 
